@@ -34,7 +34,7 @@ would have high support values, meaning that our guesses have good statistical s
 in our inferences trees have high levels of support.
 
 
-###calBranchFrequency.py
+### calBranchFrequency.py
 In this program I utilize a few methods written by another lab member in our lab and build upon them to create dictionaries containing the unique bipartitions
 and the number of times they occur in the total resamples, the model tree, and the inference tree. I also iterate through these dictionaires to put the bipartitons
 into buckets for the historgrams I used for result visualization.
