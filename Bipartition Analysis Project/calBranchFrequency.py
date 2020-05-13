@@ -4,7 +4,7 @@ from sklearn.metrics import roc_curve, auc, roc_auc_score
 from sklearn.metrics import precision_recall_curve
 import re
 
-
+####################### Written by Wei Wang (another Lab member) ###############################
 def removeBranchLen(tree):
     numList = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ".", ":"]
     flag = 0
@@ -85,6 +85,12 @@ def readTree(infile):
                 tree = line.strip()
     return tree
 
+###################################### My contribution ##########################################################
+
+""" Creates the histogram buckets I used for data visualization
+:param values: the counts for a set of bipartitions
+:returns: a dictionary containing how many branches appeared with support values 0-19,20-39,40-59,60-79,80-100
+"""
 def histCounts(values):
     counts = {20: 0, 40: 0, 60: 0, 80:0, 100:0}
     for num in values:
@@ -100,21 +106,20 @@ def histCounts(values):
             counts[100] += 1
     return (counts)
 
-
-
-#lets read the tree file
-#tree_list = readTree("rawr.trees")
 treeFile = sys.argv[1]
 modelFile = sys.argv[2]
 inferFile = sys.argv[3]
 tree_list = readMultipleTrees(treeFile)
 
+# I needed to remove the branch length (excess information) and find the bipartition in each tree
 for i in range(len(tree_list)):
     tree_list[i] = removeBranchLen(tree_list[i])
 tree_listbi = list()
 for i in range(len(tree_list)):
     tree_listbi.append(findBiPartitons(tree_list[i], 0))
 
+""" Here I iterated through all the bipartitions making a dictionary, that way I can identify the unique
+bipartions and how many times each occurs """
 branches = {}
 for t in tree_listbi:
     for b in t:
@@ -127,12 +132,15 @@ for t in tree_listbi:
                 branches[b2] += 1
         else:
             branches[b1] += 1
-
+            
+# Printing these values will write them to file I specify in the shell script I use to run this program
 print(branches)
 print("Just Values:")
 print(branches.values())
 print("For Histogram:")
 print(histCounts(branches.values()))
+
+### I repeate the same process above for the model tree
 print("Model Tree:")
 model = readTree(modelFile)
 model = removeBranchLen(model)
@@ -168,6 +176,7 @@ print(both2)
 print("For Histogram:")
 print(histCounts(both2))
 
+# Repeating the same process for the inference tree
 infer = readTree(inferFile)
 infer = removeBranchLen(infer)
 infer_bi = findBiPartitons(infer, 0)
