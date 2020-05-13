@@ -1,6 +1,10 @@
 # Undergraduate-Research
 This repository contains some of the work that I completed as an Undergraduate Research Assistant as part of Dr. Kevin J. Liu's lab at MSU.
 
+### Bipartition Analysis Project
+This folder contains elements of the research project I most recently worked on. It contains a README file with more details on the the scripts it contains.
+
+As part of statistical support estimation, the original data set is resampled multiple times, and an inference tree is constructed for each resample replicated. All of these inference trees are compared to the inference tree constructed from the original data, the amount of times a bipartition (or branch) from the original inference tree appears in the replicates gives a support measure for that specific bipartition. The idea behind this project was to further analyze the replicate inference trees. Is there bipartitions found in the replicates in high numbers but are not in the inference tree? Can we use the replicate trees to create a better inference tree?
 
 ### UURAF 2019 Project
 This folder contains elements of the research project I presented at the University Undergraduate Research and Arts Forum. The folder contains another README file that gives a more detailed description of the project's scripts/documents.
